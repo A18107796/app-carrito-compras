@@ -51,7 +51,11 @@ export class ProductoService extends CommonService<Producto>{
     return this.httpClient.get<Producto[]>(this.urlApi + '/filtrar/' + termino + '?oferta=' + oferta);
   }
 
-  
+  public changeStatus(status: boolean, id: number) {
+    return this.http.put(this.urlApi + "/" + id + "/updateOferta/" + status, null);
+  }
+
+
 
 
 }

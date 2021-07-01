@@ -66,6 +66,23 @@ export class ProductoComponent implements OnInit {
     }
   }
 
+  changeStatus(status: boolean, id: number) {
+    this._pS.changeStatus(status, id).subscribe(
+      res => {
+        console.log(res);
+        this.deleteTable();
+        setTimeout(() => {
+          this.listar();
+        }, 1000);
+
+      },
+      err => {
+        console.log(err);
+
+      }
+    )
+  }
+
   submit() {
     this.formSubmited = true;
     if (this.formProducto.valid) {

@@ -76,6 +76,7 @@
                             <th>DESCRIPCION</th>
                             <th>PRECIO</th>
                             <th>STOCK</th>
+                            <th>EN OFERTA</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -86,6 +87,12 @@
                             <td>{{p.descripcion.substring(0,30) + '...'}}</td>
                             <td class="text-center"><strong>{{'S/. ' + p.precio}}</strong> </td>
                             <td class="text-center"><strong>{{p.stock}}</strong> </td>
+                            <td class="text-center">
+                                <button *ngIf="p.ofertDay" class="btn btn-success btn-sm btn-block" type="button"
+                                    (click)="changeStatus(false,p.id)">SI</button>
+                                <button *ngIf="!p.ofertDay" class="btn btn-warning btn-sm btn-block" type="button"
+                                    (click)="changeStatus(true,p.id)">NO</button>
+                            </td>
                             <td class="text-center ">
                                 <a class="text-light btn btn-warning btn-sm" (click)="editar(p.id)"
                                     style="width: 100px;">

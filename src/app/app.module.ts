@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ModalLoginComponent } from './shared/modal-login/modal-login.component';
 
 
 
@@ -11,6 +12,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    ModalLoginComponent,
     
   ],
   imports: [
