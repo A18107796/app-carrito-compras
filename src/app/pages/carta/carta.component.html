@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar Platillo" name="txtStock"
+                (input)="filter($event)">
+        </div>
+    </div>
+    <div class="col-xs-2 text-xs-center mt-1">
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" (change)="filterByOferta($event)" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1"><strong>EN OFERTA</strong></label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animate__animated animate__fadeInUp fast" *ngIf="productos.length === 0">
+    <div class="col-lg-11">
+        <div class="alert alert-primary text-center" role="alert">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center" *ngIf="productos.length > 0">
+
+    <div class="col-lg-4 d-flex align-items-stretch mb-3" *ngFor="let p of productos">
+
+        <div class="card border-secondary animate__animated animate__fadeInUp mb-1" style="width: 18rem;">
+            <ul class="list-group list-group-flush" *ngIf="p.ofertDay">
+                <li class="list-group-item text-center bg-warning text-white"><strong>OFERTA DEL DIA</strong></li>
+            </ul>
+            <img [src]="urlImg + p.foto" class="card-img-top border" width="300" height="200">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{p.nombres.toUpperCase()}}</h5>
+                <hr>
+                <p class="card-text p-2">{{p.descripcion}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Stock: </strong> {{p.stock}}</li>
+                <li class="list-group-item"><strong>Precio: </strong> {{'S/. ' + p.precio }}</li>
+            </ul>
+            <div class="card-body text-center">
+                <a class="btn btn-outline-primary btn-block text-primary" (click)="addToCarrito(p)">Añadir al Carrito<i
+                        class="fas fa-cart-plus ml-2"></i></a>
+                <a class="btn btn-success btn-block text-light">COMPRAR</a>
+            </div>
+        </div>
+
+    </div>
+</div>

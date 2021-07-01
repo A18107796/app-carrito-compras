@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-sm-9 animate__animated animate__zoomInLeft">
+        <div class="card border-secondary">
+            <div class="card-header  text-left">
+                <strong>Carrito de Compras:</strong>
+                <i class="ml-2 fas fa-shopping-cart"></i>
+            </div>
+
+
+            <div class="row no-gutters border" *ngFor="let p of _cS.getCarritoProductos()">
+                <div class="col-md-4">
+                    <img [src]="urlImage + p.producto.foto" class="card-img" width="200" height="250">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="text-right">
+                            <button class="btn btn-danger btn-sm" type="button"
+                                (click)="removeItem(p.producto.id)">X</button>
+                        </div>
+                        <h5 class="card-title">{{p.producto.nombres}}</h5>
+                        <p class="card-text"><small class="text-muted">Cantidad:</small> <input type="number" min="1"
+                                [max]="p.producto.stock" id="Cant" [value]="p.cantidad"
+                                class="form-control text-center border-info col-2"
+                                (change)="changeCantidad($event, p.producto)"
+                                (input)="changeCantidad($event, p.producto)">
+                        </p>
+
+                        <hr>
+                        <p class="card-text text-right mt-3">
+
+                            <strong>
+                                <h3>S/. {{ (p.producto.precio * p.cantidad) | number:'1.2-5'}}</h3>
+                            </strong>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+            <button class="btn btn-block btn-outline-danger" (click)="_cS.cleanCarrito()"> LIMPIAR CARRITO </button>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card border-secondary mt-2">
+            <div class="card-header  text-center">
+                <strong>Datos de Pedido:</strong>
+                <i class="ml-2 fas fa-money-bill-wave-alt"></i>
+            </div>
+            <div class="card-body">
+                <label>Subtotal:</label>
+                <a class="form-control text-center"><i> S/ {{ _cS.getTotal() }}</i></a>
+                <label>Precio Envio:</label>
+                <a class="form-control text-center"><i>S/ 0.00</i></a>
+                <label>Descuento:</label>
+                <a class="form-control text-center"><i>S/ 0.00</i></a>
+                <label>Total a Pagar:</label>
+                <a class="form-control text-center"><i> <strong> S/ {{ _cS.getTotal() }}</strong></i></a>
+                <button class="btn btn-success btn-block mt-3" (click)="realizarPago()">REALIZAR PAGO <i
+                        class="fas fa-dollar-sign ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
