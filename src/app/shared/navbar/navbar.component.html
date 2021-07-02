@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,18 +28,123 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
         <ul class="navbar-nav btn-group my-2 my-lg-0 ml-5" role="group">
-            <!-- <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fas fa-user-tie"></i> </a>
-            <div class="dropdown-menu text-center dropdown-menu-right">
-                <a class="dropdown-item" href="#"><img src="img/user.png" alt="60" height="60" /></a>
-                <a class="dropdown-item" href="#">}</a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">@asdasd</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis Compras</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="./Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>
-            </div> -->
+         
             <button class="btn btn-primary btn-sm btn-info">Ingresar</button>
         </ul>
     </div>
-</nav>
+</nav> -->
+
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                <div class="right-phone-box">
+                    <p>Telefono :- <a href="#"> +51 923 812 120</a></p>
+                </div>
+                <div class="our-link">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="login-box">
+                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
+                        <option>Register Here</option>
+                        <option>Sign In</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<header class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light  navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand"><img src="/assets/img/main_icon.png" class="logo" alt="" width="60"
+                        height="60"></a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['/app/home']">
+                            <i class="fas fa-home mr-2"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['/app/carta']">
+                            <i class="fas fa-utensils mr-2"></i>
+                            Carta
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['/app/productos']">
+                            <i class="fas fa-utensils mr-2"></i>
+                            Productos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+                <ul>
+                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <li class="side-menu">
+                        <a href="#">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="badge">3</span>
+                            <p>My Cart</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Atribute Navigation -->
+        </div>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list">
+                    <li>
+                        <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Delica omtantur </a></h6>
+                        <p>1x - <span class="price">$80.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Omnes ocurreret</a></h6>
+                        <p>1x - <span class="price">$60.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Agam facilisis</a></h6>
+                        <p>1x - <span class="price">$40.00</span></p>
+                    </li>
+                    <li class="total">
+                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu -->
+    </nav>
+    <!-- End Navigation -->
+</header>
