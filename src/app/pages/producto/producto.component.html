@@ -1,125 +1,118 @@
-<div class="row">
-    <div class="col-sm-4">
-        <div class="card border-primary animate__animated animate__lightSpeedInLeft">
-            <div class="card-header  text-center">
-                <strong>{{ titulo.toUpperCase() + ' ' }}</strong>
-                <i class="fas fa-bookmark"></i>
-            </div>
-            <div class="card-body">
-                <form id="formProducto" (ngSubmit)="submit()" [formGroup]="formProducto">
-                    <div class="form-group">
-                        <label><strong>Producto:</strong> </label>
-                        <input type="text" name="txtNombre" class="form-control"
-                            [ngClass]="{'is-invalid': campoNoValido('producto')}" placeholder="Nombre del Producto"
-                            formControlName="producto">
-                        <div class="invalid-feedback">
-                            Por favor complete este campo.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label><strong>Descripción:</strong> </label>
-                        <textarea name="txtDescripcion" class="form-control"
-                            [ngClass]="{'is-invalid': campoNoValido('descripcion')}"
-                            placeholder="Descripcion del Producto" formControlName="descripcion"></textarea>
-                        <div class="invalid-feedback">
-                            Por favor ingrese una descripción.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label><strong>Precio:</strong> </label>
-                        <input type="text" name="txtPrecio" class="form-control"
-                            [ngClass]="{'is-invalid': campoNoValido('precio')}" placeholder="Precio del Producto"
-                            formControlName="precio">
-                        <div class="invalid-feedback">
-                            Por favor el precio y que sea valido.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label><strong>Stock:</strong> </label>
-                        <input type="text" class="form-control" [ngClass]="{'is-invalid': campoNoValido('stock')}"
-                            placeholder="Stock" name="txtStock" formControlName="stock">
-                        <div class="invalid-feedback">
-                            Por favor el precio y que sea valido.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label><strong>Foto:</strong> </label>
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" (change)="seleccionarFoto($event)">
-                                <label class="custom-file-label" for="inputGroupFile01">Seleccione Imagen</label>
+<div class="mt-5">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card border-primary animate__animated animate__lightSpeedInLeft">
+                <div class="card-header  text-center">
+                    <strong>{{ titulo.toUpperCase() + ' ' }}</strong>
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                <div class="card-body">
+                    <form id="formProducto" (ngSubmit)="submit()" [formGroup]="formProducto">
+                        <div class="form-group">
+                            <label><strong>Producto:</strong> </label>
+                            <input type="text" name="txtNombre" class="form-control"
+                                [ngClass]="{'is-invalid': campoNoValido('producto')}" placeholder="Nombre del Producto"
+                                formControlName="producto">
+                            <div class="invalid-feedback">
+                                Por favor complete este campo.
                             </div>
-
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block" name="accion"
-                            value="GuardarProducto">Guardar</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label><strong>Descripción:</strong> </label>
+                            <textarea name="txtDescripcion" class="form-control"
+                                [ngClass]="{'is-invalid': campoNoValido('descripcion')}"
+                                placeholder="Descripcion del Producto" formControlName="descripcion"></textarea>
+                            <div class="invalid-feedback">
+                                Por favor ingrese una descripción.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Precio:</strong> </label>
+                            <input type="text" name="txtPrecio" class="form-control"
+                                [ngClass]="{'is-invalid': campoNoValido('precio')}" placeholder="Precio del Producto"
+                                formControlName="precio">
+                            <div class="invalid-feedback">
+                                Por favor el precio y que sea valido.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Stock:</strong> </label>
+                            <input type="text" class="form-control" [ngClass]="{'is-invalid': campoNoValido('stock')}"
+                                placeholder="Stock" name="txtStock" formControlName="stock">
+                            <div class="invalid-feedback">
+                                Por favor el precio y que sea valido.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Foto:</strong> </label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" (change)="seleccionarFoto($event)">
+                                    <label class="custom-file-label" for="inputGroupFile01">Seleccione Imagen</label>
+                                </div>
 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block" name="accion"
+                                value="GuardarProducto">Guardar</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="card border-primary animate__animated animate__lightSpeedInRight ">
-            <div class="card-header  text-center">
-                <strong>{{ 'PRODUCTOS '}} </strong>
-                <i class="fas fa-stream"></i>
-            </div>
-            <div class="card-body">
-                <table id="example1" class="table table-responsive table-bordered">
-                    <thead class="">
-                        <tr class="text-center">
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>DESCRIPCION</th>
-                            <th>PRECIO</th>
-                            <th>STOCK</th>
-                            <th>EN OFERTA</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of productos">
-                            <td><img [src]="urlImage + p.foto" width="100" height="100"></td>
-                            <td>{{p.nombres}}</td>
-                            <td>{{p.descripcion.substring(0,30) + '...'}}</td>
-                            <td class="text-center"><strong>{{'S/. ' + p.precio}}</strong> </td>
-                            <td class="text-center"><strong>{{p.stock}}</strong> </td>
-                            <td class="text-center">
-                                <button *ngIf="p.ofertDay" class="btn btn-success btn-sm btn-block" type="button"
-                                    (click)="changeStatus(false,p.id)">SI</button>
-                                <button *ngIf="!p.ofertDay" class="btn btn-warning btn-sm btn-block" type="button"
-                                    (click)="changeStatus(true,p.id)">NO</button>
-                            </td>
-                            <td class="text-center ">
-                                <a class="text-light btn btn-warning btn-sm" (click)="editar(p.id)"
-                                    style="width: 100px;">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a class="text-light btn btn-danger btn-sm mt-1" (click)="delete(p.id)"
-                                    style="width: 100px;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+        <div class="col-sm-8">
+            <div class="card border-primary animate__animated animate__lightSpeedInRight ">
+                <div class="card-header  text-center">
+                    <strong>{{ 'PRODUCTOS '}} </strong>
+                    <i class="fas fa-stream"></i>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive table-bordered">
+                        <thead class="">
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>DESCRIPCION</th>
+                                <th>PRECIO</th>
+                                <th>STOCK</th>
+                                <th>EN OFERTA</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of productos">
+                                <td><img [src]="urlImage + p.foto" width="100" height="100"></td>
+                                <td>{{p.nombres}}</td>
+                                <td>{{p.descripcion.substring(0,30) + '...'}}</td>
+                                <td class="text-center"><strong>{{'S/. ' + p.precio}}</strong> </td>
+                                <td class="text-center"><strong>{{p.stock}}</strong> </td>
+                                <td class="text-center">
+                                    <button *ngIf="p.ofertDay" class="btn btn-success btn-sm btn-block" type="button"
+                                        (click)="changeStatus(false,p.id)">SI</button>
+                                    <button *ngIf="!p.ofertDay" class="btn btn-warning btn-sm btn-block" type="button"
+                                        (click)="changeStatus(true,p.id)">NO</button>
+                                </td>
+                                <td class="text-center ">
+                                    <a class="text-light btn btn-warning btn-sm" (click)="editar(p.id)"
+                                        style="width: 100px;">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="text-light btn btn-danger btn-sm mt-1" (click)="delete(p.id)"
+                                        style="width: 100px;">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            pageLength: 3,
-            lengthMenu: [[3, 6, 9, -1], [3, 6, 9, 'Todos']]
-        })
-
-    });
-</script>

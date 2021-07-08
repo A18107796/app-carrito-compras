@@ -44,18 +44,21 @@
                 </div>
                 <div class="our-link">
                     <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                        <li *ngIf="authService.isAuthenticated()" ><a href=""><i class="fa fa-user s_color"></i> {{(this.authService.usuario.cliente?.nombres || " ")}} </a></li>
+                        
+                        <li><a href=""><i class="fas fa-location-arrow"></i> Ubiquenos</a></li>
+                        <li><a href=""><i class="fas fa-headset"></i> Contactenos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
+                    <!--  <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
+                        <option (click)="abrirModal()" >Registrarse</option>
+                        <option>Iniciar Sesión</option>
+                    </select> -->
+                    <button *ngIf="!this.authService.isAuthenticated()" class="btn btn-primary btn-sm" [routerLink]="['/app', { outlets: { 'modal': ['a'] }}]"> Ingresar </button>
+                    <button *ngIf="this.authService.isAuthenticated()" (click)="logout()" class="btn btn-primary btn-sm"> Salir</button>
                 </div>
 
             </div>
@@ -72,8 +75,7 @@
                     aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand"><img src="/assets/img/main_icon.png" class="logo" alt="" width="60"
-                        height="60"></a>
+                <a class="navbar-brand"><img src="/assets/img/logo.png" class="logo"></a>
             </div>
             <!-- End Header Navigation -->
 
@@ -96,6 +98,12 @@
                         <a class="nav-link" [routerLink]="['/app/productos']">
                             <i class="fas fa-utensils mr-2"></i>
                             Productos
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['/app/carrito']">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Carrito
                         </a>
                     </li>
                 </ul>
@@ -148,3 +156,6 @@
     </nav>
     <!-- End Navigation -->
 </header>
+
+<router-outlet name="modal"></router-outlet>
+<!-- <app-modal-shared></app-modal-shared> -->

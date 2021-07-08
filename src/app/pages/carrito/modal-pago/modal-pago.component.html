@@ -1,0 +1,122 @@
+<!-- <div class="modal fondo-modal fade bd-example-modal-xg" [ngClass]="modalService.getOcultarModal()?'':'show modal-open'" -->
+<div class="modal fondo-modal fade bd-example-modal-lg" [ngClass]="modalService.getOcultarModal()?'':'show modal-open'"
+    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg animate__animated animate__fadeInDown">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="myLargeModalLabel">REGISTRAR PAGO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" (click)="cerrarModal()">x</span>
+                </button>
+            </div>
+            <form id="formCompras" (ngSubmit)="submit()" [formGroup]="formCompras">
+                <div class="modal-body" [ngClass]="{'table-wrapper':  this.tipo_pago === 'Tarjeta'}">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12 mb-3">
+                            <div class="checkout-address">
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName">Nombres</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder=""
+                                            [value]="compra.cliente.nombres" disabled>
+                                        <div class="invalid-feedback"> Valid first name is required. </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName">DNI</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder=""
+                                            [value]="compra.cliente.dni" disabled>
+                                        <div class="invalid-feedback"> Valid last name is required. </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName">Email</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder=""
+                                            [value]="compra.cliente.email" disabled>
+                                        <div class="invalid-feedback"> Valid first name is required. </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName">Telefono</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder=""
+                                            [value]="compra.cliente.telefono" disabled>
+                                        <div class="invalid-feedback"> Valid last name is required. </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username">Direccion Envio</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="direccion" placeholder=""
+                                            [ngClass]="{'is-invalid': campoNoValido('direccion')}"
+                                            formControlName="direccion">
+                                        <div class="invalid-feedback" style="width: 100%;"> Ingrese direccion a
+                                            enviar los pedidos.
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-4">
+                                <div class="title"> <span>Tipo Pago</span> </div>
+                                <div class="d-block my-12">
+                                    <div class="custom-control custom-radio">
+                                        <input id="credit" name="paymentMethod" type="radio"
+                                            class="custom-control-input" value="deposito"
+                                            (change)="checkTipoPago($event)">
+                                        <label class="custom-control-label" for="credit">Deposito</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
+                                            value="tarjeta" (change)="checkTipoPago($event)" checked="true">
+                                        <label class="custom-control-label" for="debit">Tarjeta</label>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="this.tipo_pago === 'Tarjeta'">
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cc-number">Credit card number</label>
+                                        <input type="text" class="form-control" id="cc-number" placeholder=""
+                                            [ngClass]="{'is-invalid': campoNoValido('num_tarjeta')}"
+                                            formControlName="num_tarjeta">
+                                        <div class="invalid-feedback"> Ingrese numero tarjeta</div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="cc-expiration">Expiration</label>
+                                        <input type="text" class="form-control" id="cc-expiration" placeholder=""
+                                            [ngClass]="{'is-invalid': campoNoValido('expiration')}"
+                                            formControlName="expiration">
+                                        <div class="invalid-feedback"> Ingrese Fecha expiración </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="cc-expiration">CVV</label>
+                                        <input type="text" class="form-control" id="cc-cvv" placeholder=""
+                                            [ngClass]="{'is-invalid': campoNoValido('cvv')}" formControlName="cvv">
+                                        <div class="invalid-feedback"> Ingrese CSV </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="payment-icon">
+                                            <ul>
+                                                <li><img class="img-fluid" src="/assets/img/payment-icon/1.png" alt="">
+                                                </li>
+                                                <li><img class="img-fluid" src="/assets/img/payment-icon/2.png" alt="">
+                                                </li>
+                                                <li><img class="img-fluid" src="/assets/img/payment-icon/3.png" alt="">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-1">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">REGISTRAR PAGO</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

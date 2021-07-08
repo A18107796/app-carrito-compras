@@ -9,13 +9,17 @@ import { CartaComponent } from './carta/carta.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductoDetailComponent } from './producto/producto-detail/producto-detail.component';
+import { ModalPagoComponent } from './carrito/modal-pago/modal-pago.component';
 
 @NgModule({
   declarations: [
     ProductoComponent,
     InicioComponent,
     CartaComponent,
-    CarritoComponent
+    CarritoComponent,
+    ProductoDetailComponent,
+    ModalPagoComponent
   ],
   imports: [
     CommonModule,

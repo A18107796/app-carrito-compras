@@ -1,0 +1,67 @@
+<div class="checkout-address">
+    <form class="needs-validation" id="formUsuario" (ngSubmit)="submit()" autocomplete="off" [formGroup]="formUsuario">
+        <div formGroupName="cliente">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">Nombres y Apellidos *</label>
+                    <input type="text" class="form-control" 
+                    [ngClass]="{'is-invalid': campoNoValido('cliente.nombres')}"
+                    id="firstName" placeholder="" formControlName="nombres">
+                    <div class="invalid-feedback"> Nombres y Apellidos es requerido</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">DNI *</label>
+                    <input type="text" class="form-control" maxlength="8"
+                    [ngClass]="{'is-invalid': campoNoValido('cliente.dni')}"
+                    id="lastName" placeholder="" formControlName="dni">
+                    <div class="invalid-feedback"> DNI es requerido y 8 Digitos. </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">E-mail *</label>
+                    <input type="text" class="form-control" 
+                    [ngClass]="{'is-invalid': campoNoValido('cliente.email')}"
+                    id="firstName" placeholder="" formControlName="email">
+                    <div class="invalid-feedback"> Email es requerido</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Telefono *</label>
+                    <input type="text" class="form-control"
+                    [ngClass]="{'is-invalid': campoNoValido('cliente.telefono')}"
+                    id="lastName" placeholder="" formControlName="telefono">
+                    <div class="invalid-feedback"> Telefono es requerido. </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="address">Direccion *</label>
+                <input type="text" class="form-control" 
+                [ngClass]="{'is-invalid': campoNoValido('cliente.direccion')}"
+                id="address" formControlName="direccion">
+                <div class="invalid-feedback"> Direccion es requerido. </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="firstName">Usuario *</label>
+                <input type="text" class="form-control" 
+                [ngClass]="{'is-invalid': campoNoValido('usuario')}"
+                id="firstName" placeholder="" formControlName="usuario">
+                <div class="invalid-feedback"> Email es requerido</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="lastName">Contraseña *</label>
+                <input type="password" class="form-control" 
+                [ngClass]="{'is-invalid': campoNoValido('password')}"
+                id="lastName" placeholder="" formControlName="password">
+                <div class="invalid-feedback"> Contraseña es requerido. </div>
+            </div>
+        </div>
+        <div class="text-right ">
+            <a [routerLink]="['/app', { outlets: { 'modal': ['a', 'view1'] }}]"
+                class="ml-auto btn hvr-hover bg-danger text-white">Volver</a>
+            <button type="submit" class="ml-auto btn hvr-hover bg-success text-white ">REGISTRARSE</button>
+
+        </div>
+    </form>
+</div>

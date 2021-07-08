@@ -1,3 +1,99 @@
+<div class="cart-box-main mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive table-bordered">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-light">
+                            <tr *ngFor="let p2 of _cS.getCarritoProductos()">
+                                <td class="thumbnail-img">
+                                    <img class="img-fluid" [src]="urlImage + p2.producto.foto" />
+                                </td>
+                                <td class="name-pr">
+                                    <a href="#">
+                                        {{p2.producto.nombres}}
+                                    </a>
+                                </td>
+                                <td class="price-pr text-success text-center">
+                                    <strong> S/. {{p2.producto.precio | number:'1.2-5'}}</strong>
+                                </td>
+                                <td class="quantity-box">
+                                    <input type="number" size="4" value="1" min="1" [max]="p2.producto.stock"
+                                        [value]="p2.cantidad" class="c-input-text qty text"
+                                        (change)="changeCantidad($event, p2.producto)"
+                                        (input)="changeCantidad($event, p2.producto)">
+                                </td>
+
+                                <td class="total-pr text-success text-center">
+                                    <strong>
+                                        S/. {{ (p2.producto.precio * p2.cantidad) | number:'1.2-5'}}
+                                    </strong>
+                                </td>
+                                <td class="remove-pr">
+
+                                    <i class="fas fa-times text-danger" (click)="removeItem(p2.producto.id)"></i>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-lg-6 col-sm-6">
+                <div class="order-box border bg-light p-4">
+                    <h3>Datos de Orden</h3>
+                    <div class="d-flex">
+                        <h4>Sub Total</h4>
+                        <div class="ml-auto font-weight-bold"> S/. {{ _cS.getTotal() | number:'1.2-5' }} </div>
+                    </div>
+                    <div class="d-flex">
+                        <h4>Descuento</h4>
+                        <div class="ml-auto font-weight-bold"> S/. 0.00 </div>
+                    </div>
+                    <hr class="my-1">
+                    <div class="d-flex">
+                        <h4>Precio Envio</h4>
+                        <div class="ml-auto font-weight-bold"> S/. 0.00 </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex gr-total">
+                        <h5>Total:</h5>
+                        <div class="ml-auto h5"> S/. {{ _cS.getTotal() | number:'1.2-5'}}</div>
+                    </div>
+                    <hr>
+                    <div class="shopping-box text-right">
+                        <button type="button" class="ml-auto btn hvr-hover text-white p-3" [disabled]="disabled()" (click)="realizarPago()">REALIZAR PAGO
+                            <i class="fas fa-dollar-sign ml-1"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="update-box text-right">
+                    <button class="btn hvr-hover pt-3 pb-3 text-white">ACTUALIZAR CARRITO <i
+                            class="fab fa-opencart"></i></button>
+                    <button class="btn hvr-hover pt-3 pb-3 ml-3 text-white bg-danger"
+                        (click)="_cS.cleanCarrito()">LIMPIAR CARRITO <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-modal-pago></app-modal-pago>
+<!-- 
+
 <div class="row">
     <div class="col-sm-9 animate__animated animate__zoomInLeft">
         <div class="card border-secondary">
@@ -60,4 +156,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

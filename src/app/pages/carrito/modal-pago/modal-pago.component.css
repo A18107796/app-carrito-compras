@@ -1,0 +1,9 @@
+.modal-open{
+    display: block; padding-right: 17px;
+}
+
+.table-wrapper {
+    max-height: 425px;
+    overflow: auto;
+    display:inline-block;
+  }

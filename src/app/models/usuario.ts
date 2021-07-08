@@ -7,8 +7,8 @@ export class Usuario {
     password!: string;
     enabled!: boolean;
     roles!: string[];
-    empleado: Empleado = new Empleado();
-    cliente: Cliente = new Cliente();
+    empleado!: Empleado | null;
+    cliente!: Cliente | null;
 
 
 }
