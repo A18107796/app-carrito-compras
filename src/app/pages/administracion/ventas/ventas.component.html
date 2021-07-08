@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row p-5">
+        <div class="col-md-6 col-lg-4 col-xl-4 animate__animated animate__fadeInRight">
+            <div class="blog-box border border-danger">
+                <div class="blog-content">
+                    <div class="title-blog text-center">
+                        <h3 class="bg-success p-2 text-white">GANANCIAS DEL DIA</h3>
+                        <h1 class="p-5">
+                            <strong>S./ {{ventasDia| number:'1.2-5' }}</strong>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-4">
+            <div class="blog-box border border-warning animate__animated animate__fadeInLeft">
+                <div class="blog-content">
+                    <div class="title-blog text-center">
+                        <h3 class="bg-success p-2 text-white">GANANCIAS TOTALES</h3>
+                        <h1 class="p-5">
+                            <strong>S./ {{ventasTotales| number:'1.2-5' }}</strong>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

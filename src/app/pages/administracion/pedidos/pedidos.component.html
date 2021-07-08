@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-main table-responsive">
+                <table class="table table-bordered table-hover animate__animated animate__fadeInRight">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID Pedido</th>
+                            <th>Cliente</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center"># Items</th>
+                            <th>Tipo Pago</th>
+                            <th class="text-center">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of compras">
+                            <td class="text-center">
+                                {{c.id}}
+                            </td>
+                            <td class="name-pr">
+                                {{c.cliente.nombres}}
+                            </td>
+                            <td class="price-pr">
+                                {{c.fecha_compras | date:'short'}}
+                            </td>
+                            <td class="text-center">
+                                <strong>{{c.detalles.length}}</strong>
+                            </td>
+                            <td class="add-pr text-center">
+                                <strong>{{c.tipo_pago.toUpperCase()}}</strong>
+                            </td>
+                            <td class="remove-pr">
+                                <button class="btn hvr-hover text-white">{{c.estado}}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

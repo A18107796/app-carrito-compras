@@ -9,6 +9,8 @@ import { BreadcrumsComponent } from './shared/breadcrums/breadcrums.component';
 import { ModalRegisterComponent } from './shared/modal-register/modal-register.component';
 import { ModalSharedComponent } from './shared/modal-shared/modal-shared.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -29,7 +31,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

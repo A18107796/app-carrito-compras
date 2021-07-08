@@ -23,4 +23,17 @@ export class ComprasService {
       })
     )
   }
+
+  getCompras(): Observable<any> {
+    return this.http.get(this.urlApi);
+  }
+
+  getGananciasTotales(): Observable<any> {
+    return this.http.get(this.urlApi + "/filtrar/ganancias/total");
+  }
+
+  getGananciasXFecha(fecha_inicio: string, fecha_fin: string): Observable<any> {
+    return this.http.get(this.urlApi + '/filtrar/ganancias?fecha_inicio=' + fecha_inicio + "&fecha_fin=" + fecha_fin);
+  }
+
 }

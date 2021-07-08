@@ -1,0 +1,14 @@
+<div class="container border bg-white">
+    <div class="text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-info" routerLinkActive="disabled"  [routerLink]="['/app/administracion/productos']">Productos</button>
+            <button type="button" class="btn btn-info" routerLinkActive="disabled" [routerLink]="['/app/administracion/pedidos']">Pedidos</button>
+            <button type="button" class="btn btn-info" routerLinkActive="disabled" [routerLink]="['/app/administracion/ventas']">Ventas</button>
+            
+        </div>
+    </div>
+    <div class="container">
+
+        <router-outlet></router-outlet>
+    </div>
+</div>
