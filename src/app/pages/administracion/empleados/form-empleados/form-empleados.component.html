@@ -1,0 +1,63 @@
+<div class="container mt-5 pb-5">
+    <form class="form" id="form-empleado" (ngSubmit)="submit()" [formGroup]="formEmpleado">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombres"><strong>Empleado: </strong></label>
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': campoNoValido('empleado')}"
+                    id="nombres" placeholder="Nombres y Apellidos." formControlName="empleado">
+                <div class="invalid-feedback">
+                    Por favor complete este campo.
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="dni"><strong>DNI: </strong></label>
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': campoNoValido('dni')}" id="dni"
+                    placeholder="DNI" formControlName="dni" maxlength="8">
+                <div class="invalid-feedback">
+                    Por favor complete este campo y que sea valido.
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email"><strong>E-mail: </strong></label>
+                <input type="email" class="form-control" id="email" [ngClass]="{'is-invalid': campoNoValido('email')}"
+                    placeholder="Email" formControlName="email">
+                <div class="invalid-feedback">
+                    Por favor complete este campo y que sea valido.
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telefono"><strong>Telefono: </strong></label>
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': campoNoValido('telefono')}"
+                    id="telefono" placeholder="Telefono" formControlName="telefono">
+                <div class="invalid-feedback">
+                    Por favor complete este campo y que sea valido.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="direccion"><strong>Direccion: </strong></label>
+            <input type="text" class="form-control" id="direccion"
+                [ngClass]="{'is-invalid': campoNoValido('direccion')}" placeholder="Dirección"
+                formControlName="direccion">
+            <div class="invalid-feedback">
+                Por favor complete este campo y que sea valido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cargo">Cargo:</label>
+            <select id="cargo" class="form-control" formControlName="cargo"
+                [ngClass]="{'is-invalid': campoNoValido('cargo')}">
+                <option value="" selected>
+                    <-- SELECCIONAR CARGO -->
+                </option>
+                <option *ngFor="let c of cargos">{{ c}} </option>
+            </select>
+            <div class="invalid-feedback">
+                Por favor seleccione carago.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">REGISTRAR</button>
+    </form>
+</div>

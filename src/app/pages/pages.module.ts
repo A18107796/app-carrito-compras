@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 
 import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
@@ -14,10 +14,18 @@ import { ModalPagoComponent } from './carrito/modal-pago/modal-pago.component';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { ProductosadmComponent } from './administracion/productosadm/productosadm.component';
 import { PedidosComponent } from './administracion/pedidos/pedidos.component';
-import { ProductoDetailComponent } from './administracion/producto/producto-detail/producto-detail.component';
 import { ProductoComponent } from './administracion/producto/producto.component';
 import { VentasComponent } from './administracion/ventas/ventas.component';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { CartaDetailComponent } from './carta/carta-detail/carta-detail.component';
+import { ClientProfileComponent } from './users/client-profile/client-profile.component';
+import { AccountInfoComponent } from './users/client-profile/account-info/account-info.component';
+import { ClientePedidosComponent } from './users/client-profile/cliente-pedidos/cliente-pedidos.component';
+import { ClientePedidoDetalleComponent } from './users/client-profile/cliente-pedidos/cliente-pedido-detalle/cliente-pedido-detalle.component';
+import { EmpleadosComponent } from './administracion/empleados/empleados.component';
+import { FormEmpleadosComponent } from './administracion/empleados/form-empleados/form-empleados.component';
+import { AdmPedidoComponent } from './administracion/pedidos/adm-pedido/adm-pedido.component';
+import { MotorizadoComponent } from './administracion/motorizado/motorizado.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +33,20 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     InicioComponent,
     CartaComponent,
     CarritoComponent,
-    ProductoDetailComponent,
     ModalPagoComponent,
     AdministracionComponent,
     ProductosadmComponent,
     PedidosComponent,
-    VentasComponent
+    VentasComponent,
+    CartaDetailComponent,
+    ClientProfileComponent,
+    AccountInfoComponent,
+    ClientePedidosComponent,
+    ClientePedidoDetalleComponent,
+    EmpleadosComponent,
+    FormEmpleadosComponent,
+    AdmPedidoComponent,
+    MotorizadoComponent
   ],
   imports: [
     CommonModule,
@@ -41,9 +57,9 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     ToastrModule.forRoot(),
     ToastNoAnimationModule,
     BrowserAnimationsModule
-    
+
   ],
-  providers: [DatePipe,
+  providers: [DatePipe, DecimalPipe,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ]
 })

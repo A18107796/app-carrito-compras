@@ -1,3 +1,4 @@
+import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class ModalPagoComponent implements OnInit {
     private router: Router,
     private fB: FormBuilder,
     private carritoService: CarritoService,
-    private compraService: ComprasService
+    private compraService: ComprasService,
+    private decimalPipe: DecimalPipe
   ) { }
   public tipo_pago: string = "Tarjeta";
   ngOnInit(): void {
@@ -62,13 +64,19 @@ export class ModalPagoComponent implements OnInit {
           console.log(res);
           this.carritoService.cleanCarrito();
           this.router.navigateByUrl("/app/carta");
+
+
           this.cerrarModal();
-          Swal.fire('Listo!', 'Compra registrada correctamente, el encargado se encargara de comunicarse con usted.', 'success')
+          if (res.tipo_pago === "Tarjeta") {
+            Swal.fire('Listo!', 'Compra registrada correctamente, el encargado se encargara de comunicarse con usted.', 'success')
+          } else {
+            Swal.fire('Listo!', 'Su pedido fue realizado exitosamente, se esperara que suba el recibo con el deposito de S./ ' + this.decimalPipe.transform(res.total, '1.2-5'), 'success');
+          }
         },
         err => {
           console.error(err);
           this.cerrarModal(),
-          Swal.fire('Error:', err.error.message, 'error');
+            Swal.fire('Error:', err.error.message, 'error');
           this.router.navigateByUrl("/app/carta");
           this.compra.detalles = [];
         }

@@ -44,9 +44,11 @@
                 </div>
                 <div class="our-link">
                     <ul>
-                        <li *ngIf="authService.isAuthenticated()" ><a href=""><i class="fa fa-user s_color"></i> {{(this.authService.usuario.cliente?.nombres || " ")}} </a></li>
-                        
-                        <li><a href=""><i class="fas fa-location-arrow"></i> Ubiquenos</a></li>
+                        <li *ngIf="authService.isAuthenticated()"><a [routerLink]=""  (click)="myProfile()"><i
+                                    class="fa fa-user s_color"></i> {{(this.authService.usuario.cliente?.nombres || "
+                                ")}} </a></li>
+
+                        <li><a href="https://www.google.com/maps/place/Puerto+Azul+Restaurant/@-12.0637789,-76.9605771,15z/data=!4m2!3m1!1s0x0:0x9d3da868730fa2df?sa=X&ved=2ahUKEwiCx_j5weTxAhUHqZUCHajRBZYQ_BJ6BAhPEAU" target="_blank" ><i class="fas fa-location-arrow"></i> Ubiquenos</a></li>
                         <li><a href=""><i class="fas fa-headset"></i> Contactenos</a></li>
                     </ul>
                 </div>
@@ -57,8 +59,10 @@
                         <option (click)="abrirModal()" >Registrarse</option>
                         <option>Iniciar Sesión</option>
                     </select> -->
-                    <button *ngIf="!this.authService.isAuthenticated()" class="btn btn-primary btn-sm" [routerLink]="['/app', { outlets: { 'modal': ['a'] }}]"> Ingresar </button>
-                    <button *ngIf="this.authService.isAuthenticated()" (click)="logout()" class="btn btn-primary btn-sm"> Salir</button>
+                    <button *ngIf="!this.authService.isAuthenticated()" class="btn btn-primary btn-sm"
+                        [routerLink]="['/app', { outlets: { 'modal': ['a'] }}]"> Ingresar </button>
+                    <button *ngIf="this.authService.isAuthenticated()" (click)="logout()"
+                        class="btn btn-primary btn-sm"> Salir</button>
                 </div>
 
             </div>
@@ -94,7 +98,8 @@
                             Carta
                         </a>
                     </li>
-                    <li *ngIf="this.authService.isAuthenticated() && this.authService.hasRole('ROLE_EMPLEADO')"  class="nav-item" [routerLinkActive]="['active']">
+                    <li *ngIf="this.authService.isAuthenticated() && this.authService.hasRole('ROLE_EMPLEADO')"
+                        class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link" [routerLink]="['/app/administracion']">
                             <i class="fas fa-utensils mr-2"></i>
                             Administración
@@ -115,13 +120,13 @@
             <div class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                
+
                 </ul>
             </div>
             <!-- End Atribute Navigation -->
         </div>
         <!-- Start Side Menu -->
-        <div class="side">
+  <!--       <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
                 <ul class="cart-list">
@@ -146,7 +151,7 @@
                     </li>
                 </ul>
             </li>
-        </div>
+        </div> -->
         <!-- End Side Menu -->
     </nav>
     <!-- End Navigation -->

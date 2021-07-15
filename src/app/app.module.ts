@@ -11,6 +11,7 @@ import { ModalSharedComponent } from './shared/modal-shared/modal-shared.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -22,6 +23,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     BreadcrumsComponent,
     ModalRegisterComponent,
     ModalSharedComponent,
+    FooterComponent,
     
   ],
   imports: [

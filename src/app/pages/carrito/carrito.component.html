@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="row my-5 animate__animated animate__fadeInUp" >
+        <div class="row my-5 animate__animated animate__fadeInUp">
             <div class="col-lg-6 col-sm-6">
                 <div class="order-box border bg-light p-4">
                     <h3>Datos de Orden</h3>
@@ -74,16 +74,18 @@
                     </div>
                     <hr>
                     <div class="shopping-box text-right">
-                        <button type="button" class="ml-auto btn hvr-hover text-white p-3" [disabled]="disabled()" (click)="realizarPago()">REALIZAR PAGO
+                        <button type="button" class="ml-auto btn hvr-hover text-white p-3" [disabled]="disabled()"
+                            (click)="realizarPago()">REALIZAR PAGO
                             <i class="fas fa-dollar-sign ml-1"></i></button>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="update-box text-right">
-                    <button class="btn hvr-hover pt-3 pb-3 text-white animate__animated animate__fadeInLeft">ACTUALIZAR CARRITO <i
-                            class="fab fa-opencart"></i></button>
-                    <button class="btn hvr-hover pt-3 pb-3 ml-3 text-white bg-danger animate__animated animate__fadeInRight"
+                    <button class="btn hvr-hover pt-3 pb-3 text-white animate__animated animate__fadeInLeft">ACTUALIZAR
+                        CARRITO <i class="fab fa-opencart"></i></button>
+                    <button
+                        class="btn hvr-hover pt-3 pb-3 ml-3 text-white bg-danger animate__animated animate__fadeInRight"
                         (click)="_cS.cleanCarrito()">LIMPIAR CARRITO <i class="fas fa-times"></i></button>
                 </div>
             </div>

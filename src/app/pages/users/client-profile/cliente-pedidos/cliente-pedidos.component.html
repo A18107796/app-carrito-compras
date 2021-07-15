@@ -1,0 +1,52 @@
+<div class="account-box animate__animated animate__slideInUp">
+    <div class="service-box">
+        <div class="service-icon">
+            <a> <i class="fa fa-gift text-white"></i> </a>
+        </div>
+        <div class="service-desc">
+            <h4>Mis Pedidos</h4>
+            <p>Revisa tus pedidos pendientes y pagados.</p>
+        </div>
+        <div class="table-main table-responsive">
+            <table class="table table-bordered table-hover animate__animated animate__fadeInRight">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID Pedido</th>
+
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center"># Items</th>
+                        <th>Tipo Pago</th>
+                        <th>Total a Pagar:</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of cliente.compras">
+                        <td class="text-center">
+                            {{c.id}}
+                        </td>
+                        <td class="price-pr">
+                            {{c.fecha_compras | date:'short'}}
+                        </td>
+                        <td class="text-center">
+                            <strong>{{c.detalles.length}}</strong>
+                        </td>
+                        <td class="add-pr text-center">
+                            <strong>{{c.tipo_pago.toUpperCase()}}</strong>
+                        </td>
+                        <td class="add-pr text-center">
+                            <strong>S/. {{c.total | number:'1.2-5' }}</strong>
+                        </td>
+                        <td class="remove-pr">
+                            <button class="btn hvr-hover text-white">{{c.estado}}</button>
+                        </td>
+                        <td class="remove-pr">
+                            <button class="btn hvr-hover text-white" [routerLink]="['detalle-pedido', c.id]" ><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

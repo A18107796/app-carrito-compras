@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ModalLoginService } from 'src/app/services/modal-login.service';
@@ -13,9 +14,10 @@ export class NavbarComponent implements OnInit {
   constructor(
     public carritoService: CarritoService,
     public modalService: ModalLoginService,
-    public authService: AuthService
-    
-    ) { }
+    public authService: AuthService,
+    private router: Router
+
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +26,18 @@ export class NavbarComponent implements OnInit {
   abrirModal() {
     this.modalService.abrirModal();
     console.log("modal ambierto");
-    
+
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     window.location.reload();
+  }
+
+  myProfile() {
+    if (this.authService.isAuthenticated()) {
+      let id = this.authService.usuario.cliente?.id;
+      this.router.navigate(['app/profile/cliente', id]);
+    }
   }
 }

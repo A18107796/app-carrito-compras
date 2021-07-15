@@ -1,0 +1,143 @@
+<div class="container">
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Datos del Cliente</h3>
+                        </div>
+                        <form class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="firstName"><strong>Cliente: </strong></label>
+                                    <input type="text" class="form-control" id="cliente"
+                                        [value]="compra.cliente?.nombres" disabled>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName"><strong>DNI: </strong></label>
+                                    <input type="text" class="form-control" id="dni" [value]="compra.cliente?.dni"
+                                        disabled>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName"><strong>Telefono: </strong></label>
+                                    <input type="text" class="form-control" id="telefono"
+                                        [value]="compra.cliente?.telefono" disabled>
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address"><strong> Dirección</strong></label>
+                                <input type="text" class="form-control" id="direccion"
+                                    [value]="compra.cliente?.direccion" disabled>
+                            </div>
+
+                            <hr class="mb-2">
+                        </form>
+                    </div>
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Estado de Pedido</h3>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="mb-3">
+                                <label><strong>ESTADO PEDIDO</strong></label>
+                                <div class="container bg-white border p-5 text-center">
+                                    <h2 class="p-3 text-white"
+                                        [ngClass]="[compra.estado === 'DEPOSITO ENVIADO - Espera revision' ? 'bg-warning': '',
+                                                compra.estado === 'PAGO PENDIENTE - Espera de Deposito' ? 'bg-warning': '',
+                                                compra.estado === 'PAGADO - Envio Pendiente' ? 'bg-primary':'',
+                                                compra.estado === 'PAGADO - Pedido en preparación' ? 'bg-info':'bg-info']">
+                                        <strong>{{compra.estado}}</strong></h2>
+                                </div>
+                                <div class="text-center" *ngIf="compra.tipo_pago === 'Deposito'">
+                                    <a class="btn btn-outline-info" [href]="urlDownloadImg + compra.img"> Ver Recibo</a>
+                                    <button *ngIf="compra.estado === 'DEPOSITO ENVIADO - Espera revision'"
+                                        class="btn btn-success ml-2" type="button" (click)="validarPago()"> Validar
+                                        Pago</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="shipping-method-box">
+                                <div class="title-left">
+                                    <h3>Metodo de Pago</h3>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName"><strong>Tipo Pago: </strong></label>
+                                        <input type="text" class="form-control" id="firstName"
+                                            [value]="compra.tipo_pago" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="odr-box">
+                                <div class="title-left">
+                                    <h3>Detalles</h3>
+                                </div>
+                                <div class="rounded p-2 bg-light">
+                                    <div class="media mb-2 border-bottom" *ngFor="let detalle of compra.detalles">
+                                        <div class="media-body"> <a
+                                                [routerLink]="['/app/carta/detalle', detalle.producto.id]"> {{
+                                                detalle.producto.nombres }}</a>
+                                            <div class="small text-muted">Precio: S/. {{ detalle.producto.precio |
+                                                number:'1.2-5' }} <span class="mx-2">|</span> Cantidad:
+                                                {{detalle.cantidad}} <span class="mx-2">|</span> S/. {{detalle.subtotal
+                                                | number:'1.2-5'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="order-box">
+                                <div class="title-left">
+                                    <h3>Información de Pago</h3>
+                                </div>
+                                <hr>
+                                <div class="d-flex gr-total">
+                                    <h5>TOTAL: </h5>
+                                    <div class="ml-auto h5 text-success"> S/. {{ compra.total | number:'1.2-5'}} </div>
+                                </div>
+
+
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex shopping-box" *ngIf="compra.estado ==='PAGADO - Envio Pendiente'">
+                            <button type="button" class="ml-auto btn hvr-hover text-white"
+                                (click)="comandarPedido()">COMANDAR PEDIDO</button>
+                        </div>
+                        <div class="col-12 d-flex shopping-box"
+                            *ngIf="compra.estado ==='PAGADO - Pedido en preparación'">
+                            <button type="button" class="ml-auto btn hvr-hover text-white bg-success"
+                                (click)="preparacionCulminada()">¿Preparación culminada?</button>
+                        </div>
+                        <div class="col-12 d-flex shopping-box"
+                            *ngIf="compra.estado ==='PAGADO - Pedido Listo, preparando para despachar'">
+                            <button type="button" class="ml-auto btn hvr-hover text-white bg-success" (click)="enviarPedido()">Enviar pedido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+</div>

@@ -1,0 +1,146 @@
+<div class="account-box animate__animated animate__slideInUp">
+    <div class="service-box">
+        <div class="col-sm-12 col-lg-12 mb-3">
+            <div class="checkout-address">
+                <div class="title-left">
+                    <h3>Pedido</h3>
+                </div>
+                <form class="needs-validation text-left" novalidate="" *ngIf="compra.cliente">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="firstName">Nombres</label>
+                            <input type="text" class="form-control" id="firstName" [value]="compra.cliente.nombres"
+                                disabled>
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="mb-3">
+                                <label for="email">Email </label>
+                                <input type="email" class="form-control" id="email" [value]="compra.cliente.email"
+                                    disabled>
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="mb-3">
+                                <label for="email">Telefono </label>
+                                <input type="email" class="form-control" id="telefono" [value]="compra.cliente.telefono"
+                                    disabled>
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username">Direccion </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="direccion" [value]="compra.cliente.direccion"
+                                disabled>
+                            <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="mb-3">
+                                <label for="email">Tipo pago: </label>
+                                <input type="email" class="form-control" id="pago" [value]="compra.tipo_pago" disabled>
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="mb-3">
+                                <label for="email">Fecha: </label>
+                                <input type="email" class="form-control" id="fecha"
+                                    [value]="this.datePipe.transform(compra.fecha_compras, 'short')" disabled>
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-1">
+                    <div class="title-left">
+                        <h3>Detalles</h3>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-lg-12 ">
+                            <div class="table-main table-responsive table-bordered animate__animated animate__fadeInUp">
+                                <table class="table">
+                                    <thead class="bg-info">
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Producto</th>
+                                            <th class="text-center">Precio</th>
+                                            <th class="text-center">Cantidad</th>
+                                            <th class="text-center">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-light">
+                                        <tr *ngFor="let p2 of compra.detalles">
+                                            <td class="thumbnail-img">
+                                                <img class="img-fluid" [src]="urlImage + p2.producto.foto" />
+                                            </td>
+                                            <td class="name-pr">
+                                                <a [routerLink]="['/app/carta/detalle', p2.producto.id]">
+                                                    {{p2.producto.nombres}}
+                                                </a>
+                                            </td>
+                                            <td class="price-pr text-success text-center">
+                                                <strong> S/. {{p2.producto.precio | number:'1.2-5'}}</strong>
+                                            </td>
+                                            <td class="text-center">
+
+                                                {{p2.cantidad}}
+
+                                            </td>
+
+                                            <td class="total-pr text-success text-center">
+                                                <strong>
+                                                    S/. {{ p2.subtotal | number:'1.2-5'}}
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4" class="text-right">
+                                                <h3>TOTAL:</h3>
+                                            </th>
+                                            <td class="text-center"><strong>
+                                                    S/. {{ compra.total | number:'1.2-5'}}
+                                                </strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="mb-3">
+                                    <label><strong>ESTADO PEDIDO</strong></label>
+                                    <div class="container bg-white border p-5 text-center">
+                                        <h2 class="bg-warning p-3 text-white">{{compra.estado}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3" *ngIf="compra.tipo_pago === 'Deposito' && !compra.img">
+                                <div class="mb-3">
+                                    <label for="email">Subir Recibo: </label>
+                                    <input type="file" class="form-control" id="file" (change)="seleccionarFoto($event)">
+                                    <div class="invalid-feedback"> Please enter a valid email address for shipping
+                                        updates.
+                                    </div>
+                                    <button class="btn btn-outline-success btn-block mt-2" type="button" (click)="subirFoto()">Subir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex shopping-box"> <a routerLink="" (click)="volver()"
+                            class="ml-auto btn hvr-hover">Volver</a> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,8 @@ export class Compras {
     tipo_tarjeta!: string;
     estado!: string;
     detalles!: DetalleCompras[];
-
+    total: number = 0.0;
+    img!: string;
     constructor(){
         this.detalles = [];
     }

@@ -42,6 +42,22 @@ export class CarritoService {
     localStorage.setItem('carrito_items', JSON.stringify(Array.from(this.carrito.productos.entries())));
   }
 
+  addItemtoCarritoWithStock(producto: Producto, stock: number) {
+
+    if (this._carrito.productos.get(producto.id)) {
+
+      let cantidad: number = this._carrito.productos.get(producto.id)?.cantidad as number;
+      
+      this._carrito.productos.set(producto.id, { producto: producto, cantidad: parseInt(cantidad.toString()) + parseInt(stock.toString()) })
+    } else {
+      this._carrito.productos.set(producto.id, { producto: producto, cantidad: stock });
+    }
+    localStorage.setItem('carrito', JSON.stringify(this.carrito));
+    localStorage.setItem('carrito_items', JSON.stringify(Array.from(this.carrito.productos.entries())));
+  }
+
+
+
   public getCarritoProductos() {
     return Array.from(this.carrito.productos.values());
   }
